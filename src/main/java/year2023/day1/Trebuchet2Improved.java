@@ -1,12 +1,9 @@
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+package year2023.day1;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import util.ReadFile;
 
 /**
  * Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one,
@@ -55,7 +52,7 @@ public class Trebuchet2Improved {
 
     public int getTotal(String fileName) {
         int total = 0;
-        List<String> inputLines = readLines(fileName);
+        List<String> inputLines = ReadFile.readLines(fileName);
         for (String input : inputLines) {
             String firstAndLast = getFirstNumber(input, Trebuchet2Improved.numberWords)
                 + getLastNumber(input, Trebuchet2Improved.numberWords);
@@ -90,15 +87,5 @@ public class Trebuchet2Improved {
             }
         }
         return returnValue;
-    }
-
-    public List<String> readLines(String fileName) {
-        try {
-            Path path = Paths.get(fileName);
-            return Files.readAllLines(path, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            System.out.println("Caught exception reading input - - " + e);
-        }
-        return new ArrayList<>();
     }
 }

@@ -1,3 +1,5 @@
+package year2023.day1;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;

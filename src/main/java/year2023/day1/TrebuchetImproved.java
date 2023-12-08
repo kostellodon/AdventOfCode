@@ -1,10 +1,7 @@
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+package year2023.day1;
+
 import java.util.List;
+import util.ReadFile;
 
 /**
  * The newly-improved calibration document consists of lines of text; each line originally contained a specific
@@ -30,23 +27,13 @@ public class TrebuchetImproved {
 
     public int getTotal(String fileName) {
         int total = 0;
-        List<String> inputLines = readLines(fileName);
+        List<String> inputLines = ReadFile.readLines(fileName);
         for (String input : inputLines) {
             String numbersOnly = getNumerics(input);
             String firstAndLast = "" + numbersOnly.charAt(0) + numbersOnly.charAt(numbersOnly.length() - 1);
             total += Integer.parseInt(firstAndLast);
         }
         return total;
-    }
-
-    public List<String> readLines(String fileName) {
-        try {
-            Path path = Paths.get(fileName);
-            return Files.readAllLines(path, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            System.out.println("Caught exception reading input - - " + e);
-        }
-        return new ArrayList<>();
     }
 
     /**
